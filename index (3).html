@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#F3F6F3" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#121915" media="(prefers-color-scheme: dark)">
+<title>Clínica Elo · Psicologia e Neuropsicologia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F3F6F3;--surface:#FFFFFF;--surface-2:#EAF0EB;--ink:#1F2B25;--muted:#5A6860;--line:#D7E0D9;
+  --sage:#476656;--sage-ink:#FFFFFF;--sage-soft:#E0EAE3;--apricot:#E2A878;--apricot-soft:#FAEDE1;--apricot-ink:#9A5D2E;
+  --lilac-soft:#ECE8F6;--lilac-ink:#5E4F94;--wa:#DCF3D9;--phone:#1F2B25;--scrim:rgba(20,28,24,.42);
+  --shadow:0 1px 2px rgba(31,43,37,.06),0 12px 32px -14px rgba(31,43,37,.22);
+  --ease-out:cubic-bezier(.23,1,.32,1);--ease-io:cubic-bezier(.77,0,.175,1);--ease-drawer:cubic-bezier(.32,.72,0,1);
+  --serif:"Newsreader",Georgia,"Times New Roman",serif;--sans:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#121915;--surface:#1A231E;--surface-2:#202B25;--ink:#E5ECE7;--muted:#9CAAA2;--line:#2C3832;
+  --sage:#8DB39E;--sage-ink:#102017;--sage-soft:#22332A;--apricot:#E2A878;--apricot-soft:#3A2D22;--apricot-ink:#EBC09C;
+  --lilac-soft:#2B2740;--lilac-ink:#C2B6EE;--wa:#21402A;--phone:#080B09;--scrim:rgba(0,0,0,.6);
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 16px 36px -16px rgba(0,0,0,.6);color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#121915;--surface:#1A231E;--surface-2:#202B25;--ink:#E5ECE7;--muted:#9CAAA2;--line:#2C3832;
+  --sage:#8DB39E;--sage-ink:#102017;--sage-soft:#22332A;--apricot:#E2A878;--apricot-soft:#3A2D22;--apricot-ink:#EBC09C;
+  --lilac-soft:#2B2740;--lilac-ink:#C2B6EE;--wa:#21402A;--phone:#080B09;--scrim:rgba(0,0,0,.6);
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 16px 36px -16px rgba(0,0,0,.6);color-scheme:dark}
+
+*{box-sizing:border-box;margin:0;padding:0}
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:90px}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--bg)}
+body.travado{overflow:hidden}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+button:focus-visible,a:focus-visible,input:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--sage);outline-offset:3px;border-radius:10px}
+.wrap{max-width:1160px;margin:0 auto;padding-left:clamp(20px,5vw,48px);padding-right:clamp(20px,5vw,48px)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+/* Botões */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-weight:600;border-radius:999px;padding:13px 24px;font-size:.98rem;white-space:nowrap;min-height:46px;
+  transition:transform 160ms var(--ease-out),background-color 200ms ease,border-color 200ms ease,filter 200ms ease,opacity 200ms ease}
+.btn:active{transform:scale(.97)}
+.btn--cheio{background:var(--sage);color:var(--sage-ink)}
+.btn--linha{border:1px solid var(--line);background:var(--surface)}
+.btn--claro{background:var(--surface);color:var(--ink)}
+.btn[disabled]{opacity:.4;cursor:not-allowed}
+.btn[disabled]:active{transform:none}
+@media (hover:hover) and (pointer:fine){
+  .btn--cheio:not([disabled]):hover{filter:brightness(1.07)}
+  .btn--linha:hover{border-color:var(--sage)}
+}
+.btn svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+/* Topo */
+.topo{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;transition:background-color 250ms ease,box-shadow 250ms ease}
+.topo.rolou{background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(14px) saturate(1.3);-webkit-backdrop-filter:blur(14px) saturate(1.3);box-shadow:0 1px 0 var(--line)}
+.topo__in{display:flex;align-items:center;gap:24px;padding-top:14px;padding-bottom:14px}
+.logo{display:flex;align-items:center;gap:10px;text-align:left}
+.logo__marca{width:36px;height:36px;flex-shrink:0}
+.logo__nome{font-family:var(--serif);font-size:1.4rem;line-height:1}
+.logo__sub{display:block;font-size:.72rem;color:var(--muted);margin-top:3px}
+.abas{position:relative;display:flex;gap:2px;padding:4px;border-radius:999px;background:var(--surface-2);margin:0 auto}
+.abas button{position:relative;z-index:1;padding:8px 16px;border-radius:999px;font-weight:500;font-size:.94rem;color:var(--muted);white-space:nowrap;transition:color 200ms ease;min-height:38px}
+.abas button[aria-current="page"]{color:var(--ink)}
+@media (hover:hover) and (pointer:fine){.abas button:hover{color:var(--ink)}}
+.abas__pilula{position:absolute;z-index:0;top:4px;bottom:4px;left:0;border-radius:999px;background:var(--surface);box-shadow:0 1px 3px rgba(31,43,37,.12);
+  transition:transform 380ms var(--ease-drawer),width 380ms var(--ease-drawer)}
+
+/* Vistas */
+.vista[hidden]{display:none}
+.vista.entrando > *{animation:vistaEntra 420ms var(--ease-out) both}
+.vista.entrando > *:nth-child(2){animation-delay:50ms}
+.vista.entrando > *:nth-child(3){animation-delay:100ms}
+.vista.entrando > *:nth-child(4){animation-delay:150ms}
+@keyframes vistaEntra{from{opacity:0;transform:translateY(10px);filter:blur(3px)}}
+.secao{padding-top:clamp(56px,8vw,104px);padding-bottom:clamp(56px,8vw,104px)}
+.titulo{font-family:var(--serif);font-weight:400;font-size:clamp(2.2rem,4.8vw,3.4rem);line-height:1.06;letter-spacing:-.018em;text-wrap:balance}
+.lead{color:var(--muted);font-size:1.08rem;max-width:52ch;margin-top:16px;text-wrap:pretty}
+.cabeca{max-width:620px;margin-bottom:clamp(32px,5vw,56px)}
+/* Hero */
+.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(36px,6vw,80px);align-items:center;padding-top:clamp(40px,6vw,80px);padding-bottom:clamp(56px,8vw,96px)}
+.hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(2.7rem,6.4vw,4.9rem);line-height:1.02;letter-spacing:-.025em;text-wrap:balance}
+.hero .lead{font-size:1.15rem}
+.hero__acoes{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.hero__selos{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:36px;color:var(--muted);font-size:.9rem}
+.hero__selos span{display:inline-flex;align-items:center;gap:8px}
+.hero__selos svg,.ico{width:18px;height:18px;stroke:var(--sage);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+
+.agenda-card{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:28px;padding:24px;box-shadow:var(--shadow)}
+.agenda-card__topo{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:6px}
+.agenda-card h2{font-family:var(--serif);font-weight:500;font-size:1.35rem}
+.agenda-card__data{font-size:.82rem;color:var(--muted)}
+.agenda-card__lista{list-style:none;margin-top:10px}
+.agenda-card__lista li{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:center;padding:14px 0;border-top:1px solid var(--line)}
+.agenda-card__lista li:first-child{border-top:0}
+.agenda-card__nome{font-weight:600;font-size:.95rem;line-height:1.25}
+.agenda-card__nome small{display:block;font-weight:400;color:var(--muted);font-size:.8rem}
+.slots{grid-column:2;display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
+.slot{padding:7px 12px;border-radius:10px;font-size:.85rem;font-weight:600;background:var(--sage-soft);color:var(--sage);min-height:36px;
+  transition:transform 140ms var(--ease-out),background-color 180ms ease,color 180ms ease}
+.slot:active{transform:scale(.95)}
+@media (hover:hover) and (pointer:fine){.slot:hover{background:var(--sage);color:var(--sage-ink)}}
+.agenda-card__rodape{margin-top:14px;font-size:.82rem;color:var(--muted);display:flex;align-items:center;gap:8px}
+.ao-vivo{width:8px;height:8px;border-radius:50%;background:#3FA36B;box-shadow:0 0 0 0 rgba(63,163,107,.5);animation:pulso 2.4s ease-out infinite}
+@keyframes pulso{70%{box-shadow:0 0 0 7px rgba(63,163,107,0)}100%{box-shadow:0 0 0 0 rgba(63,163,107,0)}}
+.balao-zap{position:absolute;right:-22px;top:-30px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:10px 14px;box-shadow:var(--shadow);
+  font-size:.82rem;display:flex;gap:10px;align-items:center;max-width:250px;animation:flutua 6s ease-in-out infinite}
+.balao-zap b{display:block;font-size:.85rem}
+.balao-zap .zico{width:30px;height:30px;border-radius:50%;background:var(--wa);display:grid;place-items:center;flex-shrink:0}
+@keyframes flutua{50%{transform:translateY(-6px)}}
+
+.avatar{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font-weight:600;font-size:.88rem;flex-shrink:0;letter-spacing:.02em}
+.av-sage{background:var(--sage-soft);color:var(--sage)}
+.av-apricot{background:var(--apricot-soft);color:var(--apricot-ink)}
+.av-lilac{background:var(--lilac-soft);color:var(--lilac-ink)}
+
+/* Áreas */
+.areas{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.area{text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:28px;display:flex;flex-direction:column;gap:10px;min-height:250px;
+  transition:transform 220ms var(--ease-out),border-color 220ms ease,box-shadow 220ms ease}
+.area:active{transform:scale(.985)}
+@media (hover:hover) and (pointer:fine){.area:hover{transform:translateY(-3px);border-color:color-mix(in srgb,var(--sage) 45%,var(--line));box-shadow:var(--shadow)}}
+.area__ico{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;margin-bottom:8px}
+.area__ico svg{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.area h3{font-family:var(--serif);font-weight:500;font-size:1.5rem;line-height:1.15}
+.area p{color:var(--muted);font-size:.96rem}
+.area__link{margin-top:auto;font-weight:600;font-size:.92rem;color:var(--sage);display:inline-flex;align-items:center;gap:6px}
+.area__link svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;transition:transform 200ms var(--ease-out)}
+@media (hover:hover) and (pointer:fine){.area:hover .area__link svg{transform:translateX(3px)}}
+
+/* Primeira sessão */
+.primeira{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(32px,6vw,80px);align-items:start}
+.linha-tempo{list-style:none;position:relative}
+.linha-tempo li{display:grid;grid-template-columns:52px 1fr;gap:16px;padding-bottom:30px;position:relative}
+.linha-tempo li:not(:last-child)::before{content:"";position:absolute;left:25px;top:52px;bottom:6px;width:2px;background:var(--line)}
+.linha-tempo__n{width:52px;height:52px;border-radius:50%;border:1.5px solid var(--line);display:grid;place-items:center;font-family:var(--serif);font-size:1.35rem;color:var(--sage);background:var(--bg)}
+.linha-tempo h3{font-weight:600;font-size:1.05rem;margin-top:12px}
+.linha-tempo p{color:var(--muted);font-size:.96rem;max-width:48ch;margin-top:4px}
+
+/* Faixa quiz */
+.faixa{background:var(--sage);color:var(--sage-ink);border-radius:32px;padding:clamp(32px,5vw,56px);display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;overflow:hidden;position:relative}
+.faixa h2{font-family:var(--serif);font-weight:400;font-size:clamp(1.8rem,3.4vw,2.6rem);line-height:1.1;max-width:20ch}
+.faixa p{opacity:.85;margin-top:10px;max-width:46ch}
+.faixa__circulos{position:absolute;right:-60px;top:-60px;width:260px;height:260px;border-radius:50%;border:1px solid currentColor;opacity:.15;pointer-events:none}
+.faixa__circulos::after{content:"";position:absolute;inset:40px;border-radius:50%;border:1px solid currentColor}
+
+/* Atendimentos */
+.servicos{display:grid;gap:16px}
+.servico{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:clamp(22px,3vw,32px);display:grid;grid-template-columns:minmax(220px,1fr) 2fr auto;gap:20px 40px;align-items:start}
+.servico h3{font-family:var(--serif);font-weight:500;font-size:1.6rem;line-height:1.12}
+.pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.pill{font-size:.78rem;padding:4px 10px;border-radius:999px;background:var(--surface-2);color:var(--muted);font-weight:500}
+.servico p{color:var(--muted);max-width:58ch}
+.etapas{list-style:none;display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin-top:18px}
+.etapas li{font-size:.78rem;color:var(--muted);line-height:1.3}
+.etapas li::before{content:"";display:block;height:4px;border-radius:4px;background:var(--lilac-soft);margin-bottom:8px}
+.etapas li:last-child::before{background:var(--apricot)}
+.etapas b{display:block;font-family:var(--serif);font-weight:500;font-size:1.05rem;color:var(--lilac-ink)}
+
+/* Profissionais */
+.filtros{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+.chip{padding:9px 16px;border-radius:999px;border:1px solid var(--line);font-size:.92rem;font-weight:500;color:var(--muted);background:var(--surface);min-height:40px;
+  transition:background-color 180ms ease,color 180ms ease,border-color 180ms ease,transform 140ms var(--ease-out)}
+.chip:active{transform:scale(.96)}
+.chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.equipe{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+.pessoa{text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:24px;display:flex;flex-direction:column;gap:10px;
+  transition:transform 220ms var(--ease-out),box-shadow 220ms ease,opacity 220ms ease,border-color 220ms ease}
+.pessoa:active{transform:scale(.985)}
+@media (hover:hover) and (pointer:fine){.pessoa:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:color-mix(in srgb,var(--sage) 40%,var(--line))}}
+.pessoa.saindo{opacity:0;transform:scale(.97)}
+.pessoa[hidden]{display:none}
+.pessoa .avatar{width:60px;height:60px;font-size:1.1rem}
+.pessoa h3{font-size:1.08rem;font-weight:600;margin-top:6px}
+.pessoa__titulo{font-size:.84rem;color:var(--muted);margin-top:-8px}
+.pessoa p{font-size:.93rem;color:var(--muted)}
+.tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:auto;padding-top:6px}
+.tag{font-size:.74rem;padding:3px 9px;border-radius:999px;background:var(--surface-2);color:var(--muted);font-weight:500}
+.pessoa__prox{display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--line);padding-top:12px;margin-top:6px;font-size:.84rem;color:var(--muted)}
+.pessoa__prox b{color:var(--sage);font-weight:600}
+.vazio{text-align:center;color:var(--muted);padding:40px 0}
+/* Como marcar: passos + celular */
+.cm{display:grid;grid-template-columns:1fr minmax(300px,370px);gap:clamp(32px,6vw,88px);align-items:center}
+.passos{list-style:none}
+.passo{border-top:1px solid var(--line)}
+.passo:last-child{border-bottom:1px solid var(--line)}
+.passo button{width:100%;text-align:left;display:grid;grid-template-columns:44px 1fr;gap:16px;padding:22px 4px 22px 0;position:relative;border-radius:0}
+.passo__num{font-family:var(--serif);font-size:1.6rem;line-height:1;color:var(--muted);padding-top:2px;transition:color 300ms ease}
+.passo__titulo{display:block;font-weight:600;font-size:1.08rem;transition:color 300ms ease}
+.passo__texto{display:grid;grid-template-rows:0fr;opacity:0;color:var(--muted);font-size:.98rem;max-width:44ch;transition:grid-template-rows 380ms var(--ease-out),opacity 260ms ease}
+.passo__texto > span{overflow:hidden}
+.passo.ativo .passo__texto{grid-template-rows:1fr;opacity:1}
+.passo.ativo .passo__num{color:var(--sage)}
+.passo__barra{position:absolute;left:0;bottom:-1px;height:2px;width:100%;background:var(--sage);transform:scaleX(0);transform-origin:left}
+.passo.ativo .passo__barra{animation:encher var(--tempo,5s) linear forwards}
+.cm.pausado .passo.ativo .passo__barra{animation:none;transform:scaleX(1)}
+@keyframes encher{to{transform:scaleX(1)}}
+.cm__acoes{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+
+.celular{background:var(--phone);border-radius:46px;padding:11px;width:100%;max-width:340px;justify-self:center;box-shadow:0 40px 70px -35px rgba(31,43,37,.55)}
+.tela{background:var(--surface);border-radius:36px;height:610px;overflow:hidden;position:relative;display:flex;flex-direction:column}
+.ilha{width:92px;height:26px;border-radius:20px;background:var(--phone);margin:10px auto 0}
+.tela__topo{padding:12px 22px 10px;display:flex;align-items:center;justify-content:space-between;font-size:.78rem;color:var(--muted)}
+.tela__marca{font-family:var(--serif);font-size:1.12rem;color:var(--ink)}
+.progresso{display:flex;gap:5px;padding:0 22px 6px}
+.progresso i{flex:1;height:3px;border-radius:3px;background:var(--line);position:relative;overflow:hidden}
+.progresso i::after{content:"";position:absolute;inset:0;background:var(--sage);transform:scaleX(0);transform-origin:left;transition:transform 400ms var(--ease-out)}
+.progresso i.on::after{transform:scaleX(1)}
+.telas{position:relative;flex:1}
+.t{position:absolute;inset:0;padding:12px 20px 20px;display:flex;flex-direction:column;gap:10px;opacity:0;transform:translateX(18px);transition:opacity 320ms ease,transform 420ms var(--ease-out);pointer-events:none}
+.t.on{opacity:1;transform:none}
+.t.saiu{transform:translateX(-18px)}
+.t h3{font-family:var(--serif);font-weight:500;font-size:1.38rem;line-height:1.15}
+.t .sub{font-size:.82rem;color:var(--muted);margin-top:-6px}
+.mop{border:1px solid var(--line);border-radius:14px;padding:12px;display:flex;gap:11px;align-items:flex-start;font-size:.85rem}
+.mop b{display:block;font-size:.92rem;font-weight:600}
+.mop small{color:var(--muted);font-size:.78rem}
+.mop.sel{border-color:var(--sage);background:var(--sage-soft)}
+.mradio{width:18px;height:18px;border-radius:50%;border:1.5px solid var(--line);flex-shrink:0;margin-top:2px}
+.mop.sel .mradio{border:5px solid var(--sage)}
+.mprof{display:flex;gap:11px;align-items:center;border:1px solid var(--line);border-radius:14px;padding:11px}
+.mprof.sel{border-color:var(--sage);background:var(--sage-soft)}
+.mprof b{font-size:.9rem;font-weight:600;display:block}
+.mprof .tags{padding-top:2px;margin-top:2px}
+.majuda{margin-top:auto;border:1px dashed var(--sage);border-radius:14px;padding:11px 13px;font-size:.82rem;color:var(--sage)}
+.majuda b{display:block;color:var(--ink);font-size:.88rem}
+.mdias{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.mdia{text-align:center;border-radius:12px;padding:8px 0;font-size:.7rem;color:var(--muted);border:1px solid var(--line)}
+.mdia b{display:block;font-size:1.02rem;color:var(--ink);font-weight:600}
+.mdia.sel{background:var(--sage);border-color:var(--sage);color:var(--sage-ink)}
+.mdia.sel b{color:var(--sage-ink)}
+.mhoras{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.mhora{text-align:center;padding:9px 0;border-radius:10px;border:1px solid var(--line);font-size:.84rem;font-weight:500}
+.mhora.off{color:var(--line);text-decoration:line-through}
+.mhora.sel{border-color:var(--sage);background:var(--sage-soft);color:var(--sage)}
+.mrot{font-size:.76rem;color:var(--muted)}
+.mrep{display:flex;align-items:center;justify-content:space-between;gap:10px;background:var(--apricot-soft);border-radius:14px;padding:11px 13px;font-size:.82rem}
+.mrep b{display:block;font-size:.88rem}
+.mchave{width:40px;height:24px;border-radius:999px;background:var(--sage);position:relative;flex-shrink:0}
+.mchave::after{content:"";position:absolute;right:3px;top:3px;width:18px;height:18px;border-radius:50%;background:var(--surface)}
+.mbotao{margin-top:auto;background:var(--sage);color:var(--sage-ink);text-align:center;border-radius:999px;padding:12px;font-weight:600;font-size:.9rem}
+.mok{width:54px;height:54px;border-radius:50%;background:var(--sage-soft);display:grid;place-items:center;margin-top:4px}
+.mok svg,.ok-grande svg{stroke:var(--sage);stroke-width:2.4;fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:30;stroke-dashoffset:30}
+.mok svg{width:28px;height:28px}
+.t.on .mok svg{animation:check 500ms 250ms var(--ease-out) forwards}
+@keyframes check{to{stroke-dashoffset:0}}
+.mresumo{border:1px solid var(--line);border-radius:14px;padding:2px 13px;font-size:.82rem}
+.mresumo div{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px solid var(--line)}
+.mresumo div:last-child{border:0}
+.mresumo span{color:var(--muted)}
+.mresumo strong{font-weight:600;text-align:right}
+.zap{background:var(--wa);border-radius:4px 16px 16px 16px;padding:10px 12px;font-size:.8rem;line-height:1.45}
+.zap small{display:block;color:var(--muted);font-size:.68rem;margin-bottom:2px}
+
+/* Dúvidas */
+.duvidas{max-width:780px;margin-top:clamp(64px,9vw,104px)}
+.duvidas h2{font-family:var(--serif);font-weight:400;font-size:clamp(1.7rem,3vw,2.2rem);margin-bottom:16px}
+.duvida{border-top:1px solid var(--line)}
+.duvida:last-child{border-bottom:1px solid var(--line)}
+.duvida button{width:100%;text-align:left;padding:20px 40px 20px 0;font-weight:600;font-size:1.02rem;position:relative;border-radius:0}
+.duvida button::after{content:"";position:absolute;right:8px;top:50%;width:9px;height:9px;border-right:2px solid var(--sage);border-bottom:2px solid var(--sage);transform:translateY(-70%) rotate(45deg);transition:transform 260ms var(--ease-out)}
+.duvida button[aria-expanded="true"]::after{transform:translateY(-25%) rotate(-135deg)}
+.duvida__resp{display:grid;grid-template-rows:0fr;transition:grid-template-rows 300ms var(--ease-out)}
+.duvida__resp > div{overflow:hidden}
+.duvida__resp p{color:var(--muted);padding-bottom:20px;max-width:62ch}
+.duvida button[aria-expanded="true"] + .duvida__resp{grid-template-rows:1fr}
+
+/* Rodapé */
+.rodape{border-top:1px solid var(--line);margin-top:40px}
+.rodape__in{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;padding-top:28px;padding-bottom:28px;font-size:.88rem;color:var(--muted)}
+
+/* Folha (modal / bottom sheet) */
+.folha{position:fixed;inset:0;z-index:50;display:grid;place-items:center;padding:20px;visibility:hidden}
+.folha.aberta{visibility:visible}
+.folha__fundo{position:absolute;inset:0;background:var(--scrim);opacity:0;transition:opacity 220ms ease}
+.folha.aberta .folha__fundo{opacity:1}
+.folha__painel{position:relative;width:100%;max-width:560px;max-height:min(760px,calc(100dvh - 40px));background:var(--surface);border-radius:28px;display:flex;flex-direction:column;overflow:hidden;
+  box-shadow:0 30px 80px -20px rgba(0,0,0,.4);opacity:0;transform:scale(.96) translateY(8px);transition:opacity 200ms ease,transform 320ms var(--ease-out)}
+.folha.aberta .folha__painel{opacity:1;transform:none}
+.folha__cabeca{display:flex;align-items:center;gap:12px;padding:18px 20px 0}
+.folha__titulo{font-weight:600;font-size:.95rem;flex:1}
+.icobtn{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;color:var(--muted);transition:background-color 160ms ease,transform 140ms var(--ease-out);flex-shrink:0}
+.icobtn:active{transform:scale(.92)}
+@media (hover:hover) and (pointer:fine){.icobtn:hover{background:var(--surface-2);color:var(--ink)}}
+.icobtn svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.icobtn[hidden]{visibility:hidden;display:grid}
+.barra-etapas{display:flex;gap:5px;padding:14px 20px 0}
+.barra-etapas i{flex:1;height:4px;border-radius:4px;background:var(--line);position:relative;overflow:hidden}
+.barra-etapas i::after{content:"";position:absolute;inset:0;background:var(--sage);transform:scaleX(0);transform-origin:left;transition:transform 380ms var(--ease-out)}
+.barra-etapas i.on::after{transform:scaleX(1)}
+.folha__corpo{padding:20px 24px 8px;overflow-y:auto;flex:1;overscroll-behavior:contain}
+.folha__corpo.troca{animation:troca 300ms var(--ease-out)}
+.folha__corpo.troca-volta{animation:trocaVolta 300ms var(--ease-out)}
+@keyframes troca{from{opacity:0;transform:translateX(14px)}}
+@keyframes trocaVolta{from{opacity:0;transform:translateX(-14px)}}
+.folha__corpo h2{font-family:var(--serif);font-weight:400;font-size:1.85rem;line-height:1.1;margin-bottom:6px}
+.folha__corpo .ajuda-txt{color:var(--muted);font-size:.95rem;margin-bottom:18px}
+.folha__pe{padding:14px 24px 22px;display:flex;gap:10px;border-top:1px solid var(--line);background:var(--surface)}
+.folha__pe .btn{flex:1}
+
+.opcoes{display:grid;gap:10px}
+.opcao{display:flex;gap:14px;align-items:flex-start;text-align:left;border:1px solid var(--line);border-radius:18px;padding:16px;width:100%;
+  transition:border-color 180ms ease,background-color 180ms ease,transform 140ms var(--ease-out)}
+.opcao:active{transform:scale(.985)}
+@media (hover:hover) and (pointer:fine){.opcao:hover{border-color:color-mix(in srgb,var(--sage) 50%,var(--line))}}
+.opcao[aria-checked="true"]{border-color:var(--sage);background:var(--sage-soft)}
+.opcao b{display:block;font-weight:600}
+.opcao small{display:block;color:var(--muted);font-size:.86rem;margin-top:2px}
+.radio{width:20px;height:20px;border-radius:50%;border:1.5px solid var(--line);flex-shrink:0;margin-top:2px;transition:border-width 180ms var(--ease-out),border-color 180ms ease}
+.opcao[aria-checked="true"] .radio{border:6px solid var(--sage)}
+.opcao .avatar{width:46px;height:46px}
+.opcao__meio{flex:1;min-width:0}
+
+.dias{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;margin:0 -24px 14px;padding-left:24px;padding-right:24px;scroll-snap-type:x mandatory;scroll-padding-inline:24px;scrollbar-width:none}
+.dias::-webkit-scrollbar{display:none}
+.dia{flex:0 0 62px;scroll-snap-align:start;text-align:center;border:1px solid var(--line);border-radius:16px;padding:10px 0;font-size:.76rem;color:var(--muted);
+  transition:background-color 180ms ease,border-color 180ms ease,color 180ms ease,transform 140ms var(--ease-out)}
+.dia:active{transform:scale(.95)}
+.dia b{display:block;font-size:1.2rem;color:var(--ink);font-weight:600;line-height:1.3}
+.dia[aria-pressed="true"]{background:var(--sage);border-color:var(--sage);color:var(--sage-ink)}
+.dia[aria-pressed="true"] b{color:var(--sage-ink)}
+.periodo{font-size:.82rem;color:var(--muted);margin:12px 0 8px}
+.horas{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.hora{padding:11px 0;border-radius:12px;border:1px solid var(--line);font-weight:600;font-size:.92rem;min-height:44px;
+  transition:background-color 160ms ease,border-color 160ms ease,color 160ms ease,transform 140ms var(--ease-out)}
+.hora:active:not([disabled]){transform:scale(.94)}
+.hora[disabled]{color:var(--line);text-decoration:line-through;cursor:not-allowed}
+.hora[aria-pressed="true"]{background:var(--sage-soft);border-color:var(--sage);color:var(--sage)}
+.repetir{display:flex;align-items:center;justify-content:space-between;gap:14px;background:var(--apricot-soft);border-radius:16px;padding:14px 16px;margin-top:18px;width:100%;text-align:left}
+.repetir b{display:block;font-size:.95rem}
+.repetir small{color:var(--muted);font-size:.84rem}
+.chave{width:46px;height:28px;border-radius:999px;background:var(--line);position:relative;flex-shrink:0;transition:background-color 200ms ease}
+.chave::after{content:"";position:absolute;left:3px;top:3px;width:22px;height:22px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.2);transition:transform 260ms var(--ease-drawer)}
+.repetir[aria-checked="true"] .chave{background:var(--sage)}
+.repetir[aria-checked="true"] .chave::after{transform:translateX(18px)}
+
+.campo{display:grid;gap:6px;margin-bottom:16px}
+.campo label{font-weight:600;font-size:.92rem}
+.campo input{font:inherit;font-size:1rem;color:var(--ink);background:var(--bg);border:1.5px solid var(--line);border-radius:14px;padding:13px 14px;min-height:48px;transition:border-color 180ms ease,background-color 180ms ease}
+.campo input:focus{outline:none;border-color:var(--sage);background:var(--surface)}
+.campo.erro input{border-color:#C2553F}
+.campo__msg{font-size:.84rem;color:#C2553F;min-height:1em}
+.campo.erro .campo__msg{animation:aparece 200ms var(--ease-out)}
+@keyframes aparece{from{opacity:0;transform:translateY(-4px)}}
+.consent{display:flex;gap:12px;align-items:flex-start;text-align:left;font-size:.88rem;color:var(--muted);width:100%}
+.caixa{width:22px;height:22px;border-radius:7px;border:1.5px solid var(--line);flex-shrink:0;display:grid;place-items:center;transition:background-color 160ms ease,border-color 160ms ease}
+.caixa svg{width:14px;height:14px;stroke:var(--sage-ink);stroke-width:3;fill:none;opacity:0;transform:scale(.6);transition:opacity 160ms ease,transform 200ms var(--ease-out)}
+.consent[aria-checked="true"] .caixa{background:var(--sage);border-color:var(--sage)}
+.consent[aria-checked="true"] .caixa svg{opacity:1;transform:none}
+
+.resumo{border:1px solid var(--line);border-radius:18px;padding:4px 16px;margin:16px 0}
+.resumo div{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);font-size:.93rem}
+.resumo div:last-child{border:0}
+.resumo span{color:var(--muted)}
+.resumo strong{font-weight:600;text-align:right}
+.ok-grande{width:76px;height:76px;border-radius:50%;background:var(--sage-soft);display:grid;place-items:center;margin:8px 0 16px;animation:okEntra 420ms var(--ease-out)}
+.ok-grande svg{width:38px;height:38px;animation:check 520ms 200ms var(--ease-out) forwards}
+@keyframes okEntra{from{transform:scale(.8);opacity:0}}
+.carregando{display:inline-block;width:18px;height:18px;border-radius:50%;border:2px solid currentColor;border-right-color:transparent;animation:gira 600ms linear infinite}
+@keyframes gira{to{transform:rotate(360deg)}}
+.perfil__topo{display:flex;gap:16px;align-items:center;margin-bottom:16px}
+.perfil__topo .avatar{width:72px;height:72px;font-size:1.3rem}
+.perfil__bloco{margin-top:18px}
+.perfil__bloco h3{font-size:.86rem;color:var(--muted);font-weight:600;margin-bottom:8px}
+.match{display:inline-flex;align-items:center;gap:6px;font-size:.78rem;font-weight:600;color:var(--sage);background:var(--sage-soft);padding:3px 9px;border-radius:999px;margin-top:6px}
+
+@media (max-width:900px){
+  .hero,.primeira,.cm{grid-template-columns:1fr}
+  .balao-zap,.agenda-card__data{display:none}
+  .areas{grid-template-columns:1fr}
+  .area{min-height:0}
+  .servico{grid-template-columns:1fr}
+  .faixa{grid-template-columns:1fr}
+  .celular{order:-1}
+}
+@media (max-width:760px){
+  .topo__in{flex-wrap:wrap;gap:10px 12px}
+  .topo .btn--cheio{margin-left:auto;padding:9px 18px;min-height:42px;font-size:.92rem}
+  .so-desk,.logo__sub{display:none}
+  .abas{order:3;width:100%;overflow-x:auto;scrollbar-width:none;margin:0}
+  .abas::-webkit-scrollbar{display:none}
+  .etapas{grid-template-columns:repeat(3,1fr);row-gap:14px}
+  .folha{padding:0;place-items:end stretch}
+  .folha__painel{max-width:none;border-radius:28px 28px 0 0;max-height:calc(100dvh - 24px);transform:translateY(100%);transition:opacity 150ms ease,transform 420ms var(--ease-drawer)}
+  .folha.aberta .folha__painel{transform:none}
+  .folha__pe{padding-bottom:calc(18px + env(safe-area-inset-bottom,0px))}
+  .horas{grid-template-columns:repeat(3,1fr)}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  .folha__fundo,.folha__painel,.t{transition-duration:150ms!important;transform:none!important}
+}
+</style>
+</head>
+<body>
+<header class="topo" id="topo">
+  <div class="wrap topo__in">
+    <button class="logo" data-ir="inicio" aria-label="Clínica Elo, ir para o início">
+      <svg class="logo__marca" viewBox="0 0 36 36" aria-hidden="true"><circle cx="14" cy="18" r="9" fill="none" stroke="var(--sage)" stroke-width="2.4"/><circle cx="22" cy="18" r="9" fill="none" stroke="var(--apricot)" stroke-width="2.4"/></svg>
+      <span><span class="logo__nome">Clínica Elo</span><span class="logo__sub">Psicologia e Neuropsicologia</span></span>
+    </button>
+    <nav class="abas" id="abas" aria-label="Seções do site">
+      <span class="abas__pilula" id="pilula" aria-hidden="true"></span>
+      <button data-ir="inicio">Início</button>
+      <button data-ir="atendimentos">Atendimentos</button>
+      <button data-ir="profissionais">Profissionais</button>
+      <button data-ir="como-marcar">Como marcar</button>
+    </nav>
+    <button class="btn btn--cheio" data-agendar>Agendar<span class="so-desk">&nbsp;horário</span></button>
+  </div>
+</header>
+
+<main>
+<!-- ============ INÍCIO ============ -->
+<section class="vista" data-vista="inicio" aria-label="Início">
+  <div class="wrap hero">
+    <div>
+      <h1>Cuidado psicológico para cada fase da vida</h1>
+      <p class="lead">Psicoterapia, avaliação neuropsicológica e atendimento infantil, presencial ou online. Escolha o profissional e marque seu horário aqui mesmo.</p>
+      <div class="hero__acoes">
+        <button class="btn btn--cheio" data-agendar>Agendar horário</button>
+        <button class="btn btn--linha" data-quiz>Não sei com quem marcar</button>
+      </div>
+      <div class="hero__selos">
+        <span><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>Presencial e online</span>
+        <span><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Sigilo em todas as mensagens</span>
+        <span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Seg a sáb</span>
+      </div>
+    </div>
+
+    <div class="agenda-card" aria-labelledby="ag-titulo">
+      <div class="agenda-card__topo"><h2 id="ag-titulo">Próximos horários livres</h2><span class="agenda-card__data" id="ag-data"></span></div>
+      <ul class="agenda-card__lista" id="ag-lista"></ul>
+      <div class="agenda-card__rodape"><span class="ao-vivo" aria-hidden="true"></span>Toque num horário para reservar</div>
+      <div class="balao-zap" aria-hidden="true">
+        <span class="zico"><svg class="ico" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
+        <span><b>Horário confirmado</b>Lembrete chega 1 dia antes</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap secao" style="padding-top:clamp(40px,6vw,72px)">
+    <div class="cabeca">
+      <h2 class="titulo">Como podemos ajudar</h2>
+      <p class="lead">Três formas de cuidado, cada uma com sua duração e seu formato.</p>
+    </div>
+    <div class="areas">
+      <button class="area" data-agendar data-servico="terapia">
+        <span class="area__ico av-sage"><svg viewBox="0 0 24 24"><path d="M7 10h10M7 14h6"/><path d="M21 12a8 8 0 0 1-11.9 7L4 20l1-4.6A8 8 0 1 1 21 12Z"/></svg></span>
+        <h3>Psicoterapia</h3>
+        <p>Para ansiedade, luto, relacionamentos e fases de mudança. Você pode manter o mesmo horário toda semana.</p>
+        <span class="area__link">Agendar sessão <svg viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span>
+      </button>
+      <button class="area" data-agendar data-servico="avaliacao">
+        <span class="area__ico av-lilac"><svg viewBox="0 0 24 24"><path d="M9.5 3a4.5 4.5 0 0 0-4.4 5.5A4 4 0 0 0 6 16a4 4 0 0 0 6 3.5A4 4 0 0 0 18 16a4 4 0 0 0 .9-7.5A4.5 4.5 0 0 0 12 4.6 4.5 4.5 0 0 0 9.5 3Z"/><path d="M12 5v14"/></svg></span>
+        <h3>Avaliação neuropsicológica</h3>
+        <p>Investigação de atenção, memória e aprendizagem em 6 encontros, com laudo e devolutiva.</p>
+        <span class="area__link">Agendar avaliação <svg viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span>
+      </button>
+      <button class="area" data-agendar data-servico="infantil">
+        <span class="area__ico av-apricot"><svg viewBox="0 0 24 24"><circle cx="12" cy="6" r="3"/><path d="M8 21v-5l-2-4 6-2 6 2-2 4v5"/></svg></span>
+        <h3>Infância e adolescência</h3>
+        <p>Atendimento para crianças e jovens, com orientação aos pais desde a primeira conversa.</p>
+        <span class="area__link">Agendar para meu filho <svg viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span>
+      </button>
+    </div>
+  </div>
+
+  <div class="wrap secao primeira" style="padding-top:clamp(24px,4vw,48px)">
+    <div>
+      <h2 class="titulo">Como é a primeira sessão</h2>
+      <p class="lead">Dar o primeiro passo costuma ser a parte mais difícil. Aqui está o que acontece, sem surpresas.</p>
+    </div>
+    <ol class="linha-tempo">
+      <li><span class="linha-tempo__n">1</span><div><h3>Você chega no seu tempo</h3><p>Pode chegar 10 minutos antes para se acomodar. Na sessão online, o link chega pelo WhatsApp no dia.</p></div></li>
+      <li><span class="linha-tempo__n">2</span><div><h3>Uma conversa, não um interrogatório</h3><p>Você conta o que te trouxe até aqui, no ritmo que for confortável. Não existe resposta certa.</p></div></li>
+      <li><span class="linha-tempo__n">3</span><div><h3>Vocês combinam os próximos passos</h3><p>Frequência, objetivos e formato. Se quiser, já deixa um horário fixo reservado toda semana.</p></div></li>
+    </ol>
+  </div>
+
+  <div class="wrap" style="padding-bottom:clamp(56px,8vw,96px)">
+    <div class="faixa">
+      <span class="faixa__circulos" aria-hidden="true"></span>
+      <div><h2>Não sabe com quem marcar?</h2><p>Responda 3 perguntas rápidas e mostramos os profissionais que combinam com o que você procura.</p></div>
+      <button class="btn btn--claro" data-quiz>Responder agora</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ATENDIMENTOS ============ -->
+<section class="vista" data-vista="atendimentos" aria-label="Atendimentos" hidden>
+  <div class="wrap secao">
+    <div class="cabeca">
+      <h2 class="titulo">Atendimentos</h2>
+      <p class="lead">Cada atendimento tem duração e formato próprios. Ao marcar, o site reserva o tempo certo na agenda do profissional.</p>
+    </div>
+    <div class="servicos">
+      <article class="servico">
+        <div><h3>Psicoterapia individual</h3><div class="pills"><span class="pill">50 min</span><span class="pill">Semanal</span><span class="pill">Presencial ou online</span></div></div>
+        <p>Acompanhamento contínuo para adultos. Depois da primeira sessão, você pode deixar o mesmo horário reservado toda semana, sem precisar marcar de novo.</p>
+        <button class="btn btn--linha" data-agendar data-servico="terapia">Agendar</button>
+      </article>
+      <article class="servico">
+        <div><h3>Avaliação neuropsicológica</h3><div class="pills"><span class="pill">6 encontros</span><span class="pill">Presencial</span><span class="pill">Com laudo</span></div></div>
+        <div>
+          <p>Indicada para investigar TDAH, TEA, dificuldades de aprendizagem e alterações de memória. Você marca a entrevista inicial e a profissional organiza as próximas etapas com você.</p>
+          <ol class="etapas" aria-label="Etapas da avaliação">
+            <li><b>1</b>Entrevista</li><li><b>2</b>Testagem</li><li><b>3</b>Testagem</li><li><b>4</b>Testagem</li><li><b>5</b>Análise</li><li><b>6</b>Devolutiva</li>
+          </ol>
+        </div>
+        <button class="btn btn--linha" data-agendar data-servico="avaliacao">Agendar</button>
+      </article>
+      <article class="servico">
+        <div><h3>Infância e adolescência</h3><div class="pills"><span class="pill">50 min</span><span class="pill">Presencial</span><span class="pill">Com o responsável</span></div></div>
+        <p>Psicoterapia e avaliação para crianças e adolescentes. O responsável faz o agendamento e participa da primeira conversa.</p>
+        <button class="btn btn--linha" data-agendar data-servico="infantil">Agendar</button>
+      </article>
+      <article class="servico">
+        <div><h3>Terapia de casal</h3><div class="pills"><span class="pill">60 min</span><span class="pill">Quinzenal</span><span class="pill">Presencial ou online</span></div></div>
+        <p>Para casais que querem melhorar a comunicação ou atravessar um momento difícil com apoio.</p>
+        <button class="btn btn--linha" data-agendar data-servico="casal">Agendar</button>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROFISSIONAIS ============ -->
+<section class="vista" data-vista="profissionais" aria-label="Profissionais" hidden>
+  <div class="wrap secao">
+    <div class="cabeca">
+      <h2 class="titulo">Profissionais</h2>
+      <p class="lead">Veja a abordagem e o público de cada um. Toque no card para ver o perfil e os horários.</p>
+    </div>
+    <div class="filtros" role="group" aria-label="Filtrar profissionais" id="filtros">
+      <button class="chip" aria-pressed="true" data-filtro="todos">Todos</button>
+      <button class="chip" aria-pressed="false" data-filtro="terapia">Psicoterapia</button>
+      <button class="chip" aria-pressed="false" data-filtro="avaliacao">Neuropsicologia</button>
+      <button class="chip" aria-pressed="false" data-filtro="infantil">Infantil</button>
+      <button class="chip" aria-pressed="false" data-filtro="online">Atende online</button>
+    </div>
+    <div class="equipe" id="equipe"></div>
+  </div>
+</section>
+
+<!-- ============ COMO MARCAR ============ -->
+<section class="vista" data-vista="como-marcar" aria-label="Como marcar" hidden>
+  <div class="wrap secao">
+    <div class="cabeca">
+      <h2 class="titulo">Marcar seu horário leva menos de dois minutos</h2>
+      <p class="lead">Sem ligação e sem esperar retorno. Você escolhe o atendimento, o profissional e o horário, e recebe a confirmação no WhatsApp.</p>
+    </div>
+    <div class="cm" id="cm">
+      <div>
+        <ol class="passos" id="passos">
+          <li class="passo ativo"><button type="button" aria-current="step"><span class="passo__num">1</span><span><span class="passo__titulo">Escolha o tipo de atendimento</span><span class="passo__texto"><span>Psicoterapia, avaliação neuropsicológica, infantil ou casal. Cada um já mostra a duração e se pode ser online.</span></span></span><span class="passo__barra"></span></button></li>
+          <li class="passo"><button type="button"><span class="passo__num">2</span><span><span class="passo__titulo">Escolha com quem quer ser atendido</span><span class="passo__texto"><span>Veja a abordagem e o público de cada profissional. Na dúvida, responda 3 perguntas e mostramos quem combina com você.</span></span></span><span class="passo__barra"></span></button></li>
+          <li class="passo"><button type="button"><span class="passo__num">3</span><span><span class="passo__titulo">Escolha o dia e o horário</span><span class="passo__texto"><span>Só aparecem os horários livres. Na terapia, você pode deixar o mesmo horário reservado toda semana.</span></span></span><span class="passo__barra"></span></button></li>
+          <li class="passo"><button type="button"><span class="passo__num">4</span><span><span class="passo__titulo">Receba a confirmação no WhatsApp</span><span class="passo__texto"><span>Um dia antes chega um lembrete. Para confirmar ou remarcar, basta responder a mensagem.</span></span></span><span class="passo__barra"></span></button></li>
+        </ol>
+        <div class="cm__acoes">
+          <button class="btn btn--cheio" data-agendar>Agendar meu horário</button>
+          <button class="btn btn--linha" data-quiz>Não sei com quem marcar</button>
+        </div>
+      </div>
+
+      <div class="celular" aria-hidden="true">
+        <div class="tela">
+          <div class="ilha"></div>
+          <div class="tela__topo"><span class="tela__marca">Clínica Elo</span><span id="contador">Passo 1 de 4</span></div>
+          <div class="progresso" id="mprog"><i class="on"></i><i></i><i></i><i></i></div>
+          <div class="telas">
+            <div class="t on">
+              <h3>O que você procura?</h3>
+              <div class="mop sel"><span class="mradio"></span><div><b>Psicoterapia</b><small>50 min · presencial ou online</small></div></div>
+              <div class="mop"><span class="mradio"></span><div><b>Avaliação neuropsicológica</b><small>6 encontros, com devolutiva</small></div></div>
+              <div class="mop"><span class="mradio"></span><div><b>Infância e adolescência</b><small>Com o responsável</small></div></div>
+              <div class="mop"><span class="mradio"></span><div><b>Terapia de casal</b><small>60 min</small></div></div>
+              <div class="mbotao">Continuar</div>
+            </div>
+            <div class="t">
+              <h3>Com quem você quer falar?</h3>
+              <p class="sub">Psicoterapia · 3 profissionais</p>
+              <div class="mprof sel"><span class="avatar av-sage">CM</span><div><b>Camila Moraes</b><div class="tags"><span class="tag">TCC</span><span class="tag">Ansiedade</span></div></div></div>
+              <div class="mprof"><span class="avatar av-apricot">RL</span><div><b>Rafael Lima</b><div class="tags"><span class="tag">Psicanálise</span><span class="tag">Luto</span></div></div></div>
+              <div class="mprof"><span class="avatar av-lilac">JA</span><div><b>Júlia Andrade</b><div class="tags"><span class="tag">TCC</span><span class="tag">Adolescentes</span></div></div></div>
+              <div class="majuda"><b>Não sabe com quem marcar?</b>Responda 3 perguntas rápidas</div>
+            </div>
+            <div class="t">
+              <h3>Quando fica melhor?</h3>
+              <p class="sub">Camila Moraes · 50 min</p>
+              <div class="mdias"><div class="mdia">seg<b>9</b></div><div class="mdia sel">ter<b>10</b></div><div class="mdia">qua<b>11</b></div><div class="mdia">qui<b>12</b></div><div class="mdia">sex<b>13</b></div></div>
+              <p class="mrot">Horários livres</p>
+              <div class="mhoras"><div class="mhora off">08:00</div><div class="mhora">09:00</div><div class="mhora off">10:00</div><div class="mhora">14:00</div><div class="mhora sel">15:00</div><div class="mhora">17:00</div></div>
+              <div class="mrep"><div><b>Manter toda terça às 15h</b>Seu horário fica reservado</div><span class="mchave"></span></div>
+              <div class="mbotao">Reservar horário</div>
+            </div>
+            <div class="t">
+              <div class="mok"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+              <h3>Horário reservado</h3>
+              <div class="mresumo"><div><span>Profissional</span><strong>Camila Moraes</strong></div><div><span>Quando</span><strong>Toda terça, 15h</strong></div><div><span>Primeira sessão</span><strong>10 de novembro</strong></div></div>
+              <div class="zap"><small>WhatsApp · Clínica Elo</small>Olá, Ana! Seu horário na Clínica Elo está confirmado para terça, 10/11, às 15h. Responda 1 para confirmar ou 2 para remarcar.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="duvidas">
+      <h2>Dúvidas sobre a marcação</h2>
+      <div id="duvidas"></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="rodape">
+  <div class="wrap rodape__in"><span>Clínica Elo · Psicologia e Neuropsicologia</span><span>Site de demonstração com dados fictícios</span></div>
+</footer>
+
+<div class="folha" id="folha" aria-hidden="true">
+  <div class="folha__fundo" data-fechar></div>
+  <div class="folha__painel" role="dialog" aria-modal="true" aria-labelledby="folha-titulo">
+    <div class="folha__cabeca">
+      <button class="icobtn" id="folha-voltar" aria-label="Voltar" hidden><svg viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></button>
+      <span class="folha__titulo" id="folha-titulo"></span>
+      <button class="icobtn" data-fechar aria-label="Fechar"><svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    </div>
+    <div class="barra-etapas" id="folha-barra"></div>
+    <div class="folha__corpo" id="folha-corpo"></div>
+    <div class="folha__pe" id="folha-pe"></div>
+  </div>
+</div>
+<div class="sr" aria-live="polite" id="anuncio"></div>
+
+<script>
+(function(){
+'use strict';
+const $ = (s, el = document) => el.querySelector(s);
+const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+const reduzido = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const anunciar = t => { const a = $('#anuncio'); a.textContent = ''; setTimeout(() => a.textContent = t, 30); };
+
+/* ---------- Dados (fictícios) ---------- */
+const SERV = {
+  terapia:  { nome:'Psicoterapia individual', curto:'Psicoterapia', desc:'Sessões de 50 min · presencial ou online', dur:'50 min', semanal:true },
+  avaliacao:{ nome:'Avaliação neuropsicológica', curto:'Avaliação', desc:'Começa pela entrevista inicial · 6 encontros no total', dur:'60 min (entrevista inicial)', semanal:false },
+  infantil: { nome:'Infância e adolescência', curto:'Infantil', desc:'50 min · o responsável participa da primeira conversa', dur:'50 min', semanal:true },
+  casal:    { nome:'Terapia de casal', curto:'Casal', desc:'Sessões de 60 min · presencial ou online', dur:'60 min', semanal:false }
+};
+const PROFS = [
+  { id:'camila', nome:'Camila Moraes', ini:'CM', cor:'av-sage', titulo:'Psicóloga', serv:['terapia'], online:true, abordagem:'Terapia cognitivo-comportamental (TCC)', publico:'Adultos', tags:['TCC','Ansiedade','Adultos'],
+    bio:'Trabalha com ansiedade, estresse no trabalho e autoestima. Gosta de construir com o paciente ferramentas práticas para o dia a dia.' },
+  { id:'rafael', nome:'Rafael Lima', ini:'RL', cor:'av-apricot', titulo:'Psicólogo', serv:['terapia'], online:true, abordagem:'Psicanálise', publico:'Adultos', tags:['Psicanálise','Luto','Adultos'],
+    bio:'Acompanha processos de luto, perdas e grandes mudanças de vida, com escuta cuidadosa e sem pressa.' },
+  { id:'beatriz', nome:'Beatriz Nunes', ini:'BN', cor:'av-lilac', titulo:'Neuropsicóloga', serv:['avaliacao','infantil'], online:false, abordagem:'Avaliação neuropsicológica', publico:'Crianças e adolescentes', tags:['Avaliação','TDAH','Crianças'],
+    bio:'Faz avaliação de TDAH, TEA e dificuldades de aprendizagem em crianças, sempre com devolutiva detalhada para a família e a escola.' },
+  { id:'julia', nome:'Júlia Andrade', ini:'JA', cor:'av-sage', titulo:'Psicóloga', serv:['terapia','infantil'], online:true, abordagem:'TCC para adolescentes', publico:'Adolescentes e pais', tags:['TCC','Adolescentes','Pais'],
+    bio:'Atende adolescentes e orienta pais em questões de comportamento, escola e uso de telas.' },
+  { id:'marcos', nome:'Marcos Silva', ini:'MS', cor:'av-apricot', titulo:'Neuropsicólogo', serv:['avaliacao'], online:false, abordagem:'Avaliação neuropsicológica', publico:'Adultos e idosos', tags:['Avaliação','Memória','Idosos'],
+    bio:'Avalia memória, atenção e funções executivas em adultos e idosos, incluindo investigação de TDAH na vida adulta.' },
+  { id:'larissa', nome:'Larissa Freitas', ini:'LF', cor:'av-lilac', titulo:'Psicóloga', serv:['casal','terapia'], online:true, abordagem:'Terapia sistêmica', publico:'Casais e famílias', tags:['Sistêmica','Casais','Família'],
+    bio:'Trabalha com casais e famílias em momentos de conflito, mudança ou reconstrução da comunicação.' }
+];
+const prof = id => PROFS.find(p => p.id === id);
+
+/* ---------- Agenda simulada ---------- */
+const SEM = ['dom','seg','ter','qua','qui','sex','sáb'];
+const SEM_LONGO = ['domingo','segunda','terça','quarta','quinta','sexta','sábado'];
+const MES = ['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
+const DIAS = (() => { const r = []; const d = new Date(); d.setHours(0,0,0,0);
+  while (r.length < 12) { d.setDate(d.getDate() + 1); if (d.getDay() !== 0) r.push(new Date(d)); } return r; })();
+const chaveDia = d => `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+const fmtCurto = d => `${SEM_LONGO[d.getDay()]}, ${d.getDate()}/${String(d.getMonth()+1).padStart(2,'0')}`;
+const fmtLongo = d => `${d.getDate()} de ${MES[d.getMonth()]}`;
+const hh = h => String(h).padStart(2,'0') + ':00';
+function hash(s){ let h = 2166136261; for (const c of s) { h ^= c.charCodeAt(0); h = Math.imul(h, 16777619); } return h >>> 0; }
+function horarios(pid, d){
+  const base = d.getDay() === 6 ? [8,9,10,11] : [8,9,10,11,14,15,16,17,18,19];
+  return base.map(h => ({ h, livre: hash(pid + chaveDia(d) + h) % 10 > 3 }));
+}
+function proximos(pid, n = 3){
+  for (const d of DIAS) { const l = horarios(pid, d).filter(x => x.livre).slice(0, n); if (l.length) return { d, horas: l.map(x => x.h) }; }
+  return null;
+}
+const rotuloDia = d => { const am = new Date(); am.setHours(0,0,0,0); am.setDate(am.getDate()+1); return chaveDia(d) === chaveDia(am) ? 'Amanhã' : fmtCurto(d); };
+
+/* ---------- Navegação por abas ---------- */
+const vistas = $$('.vista');
+const botoesAba = $$('#abas button');
+const pilula = $('#pilula');
+let vistaAtual = 'inicio';
+function moverPilula(animar = true){
+  const b = botoesAba.find(x => x.dataset.ir === vistaAtual); if (!b) return;
+  if (!animar) pilula.style.transition = 'none';
+  pilula.style.width = b.offsetWidth + 'px';
+  pilula.style.transform = `translateX(${b.offsetLeft}px)`;
+  if (!animar) { pilula.offsetWidth; pilula.style.transition = ''; }
+  if (b.scrollIntoView && innerWidth < 760) b.scrollIntoView({ block:'nearest', inline:'center', behavior: reduzido ? 'auto' : 'smooth' });
+}
+function irPara(nome, inicial = false){
+  if (!vistas.some(v => v.dataset.vista === nome)) nome = 'inicio';
+  vistaAtual = nome;
+  vistas.forEach(v => {
+    const ativa = v.dataset.vista === nome;
+    v.hidden = !ativa;
+    v.classList.remove('entrando');
+    if (ativa && !inicial && !reduzido) { void v.offsetWidth; v.classList.add('entrando'); }
+  });
+  botoesAba.forEach(b => b.dataset.ir === nome ? b.setAttribute('aria-current','page') : b.removeAttribute('aria-current'));
+  moverPilula(!inicial);
+  if (!inicial) window.scrollTo({ top:0, behavior:'auto' });
+  try { history.replaceState(null, '', '#' + nome); } catch(e) {}
+  if (!inicial) anunciar('Seção ' + (botoesAba.find(b => b.dataset.ir === nome)?.textContent || ''));
+}
+addEventListener('resize', () => moverPilula(false));
+addEventListener('scroll', () => $('#topo').classList.toggle('rolou', scrollY > 8), { passive:true });
+
+/* ---------- Início: próximos horários ---------- */
+(function(){
+  const lista = $('#ag-lista');
+  ['camila','beatriz','rafael'].forEach(id => {
+    const p = prof(id), px = proximos(id); if (!px) return;
+    const li = document.createElement('li');
+    li.innerHTML = `<span class="avatar ${p.cor}">${p.ini}</span>
+      <span class="agenda-card__nome">${p.nome}<small>${p.titulo} · ${rotuloDia(px.d)}</small></span>
+      <span class="slots">${px.horas.map(h => `<button class="slot" data-slot="${id}|${chaveDia(px.d)}|${h}" aria-label="Reservar ${hh(h)} com ${p.nome}">${hh(h)}</button>`).join('')}</span>`;
+    lista.appendChild(li);
+  });
+  $('#ag-data').textContent = 'Atualizado agora';
+})();
+
+/* ---------- Profissionais ---------- */
+const equipe = $('#equipe');
+function cardPessoa(p){
+  const px = proximos(p.id, 1);
+  return `<button class="pessoa" data-perfil="${p.id}" data-serv="${p.serv.join(' ')}${p.online ? ' online' : ''}">
+    <span class="avatar ${p.cor}">${p.ini}</span>
+    <h3>${p.nome}</h3><span class="pessoa__titulo">${p.titulo} · CRP 00/00000</span>
+    <p>${p.bio}</p>
+    <span class="tags">${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}${p.online ? '<span class="tag">Online</span>' : ''}</span>
+    <span class="pessoa__prox"><span>Próximo horário</span><b>${px ? rotuloDia(px.d) + ', ' + hh(px.horas[0]) : 'Sem vagas'}</b></span>
+  </button>`;
+}
+equipe.innerHTML = PROFS.map(cardPessoa).join('');
+$('#filtros').addEventListener('click', e => {
+  const c = e.target.closest('.chip'); if (!c) return;
+  $$('.chip', $('#filtros')).forEach(x => x.setAttribute('aria-pressed', x === c));
+  const f = c.dataset.filtro; let i = 0;
+  $$('.pessoa', equipe).forEach(card => {
+    const mostra = f === 'todos' || card.dataset.serv.split(' ').includes(f);
+    card.hidden = !mostra;
+    if (mostra && !reduzido) { card.style.animation = 'none'; void card.offsetWidth; card.style.animation = `vistaEntra 360ms var(--ease-out) ${i++ * 45}ms both`; }
+  });
+  anunciar($$('.pessoa:not([hidden])', equipe).length + ' profissionais');
+});
+
+/* ---------- Dúvidas ---------- */
+const DUV = [
+  ['Posso marcar para meu filho ou outra pessoa?','Pode. Escolha "Infância e adolescência" no primeiro passo. Para menores de idade, pedimos os dados do responsável, que também participa da primeira conversa.'],
+  ['Como funciona a sessão online?','Depois de confirmar, você recebe pelo WhatsApp o link da videochamada. É só abrir no horário marcado, pelo celular ou pelo computador.'],
+  ['Preciso cancelar ou remarcar. O que faço?','Responda a mensagem de lembrete ou use o link da confirmação. Remarcações com pelo menos 24h de antecedência não têm custo.'],
+  ['Vocês atendem convênio?','Os atendimentos são particulares, com recibo para pedir reembolso ao seu plano. Você vê o valor antes de confirmar.'],
+  ['Meus dados ficam protegidos?','Pedimos só o necessário para marcar: nome e WhatsApp. As mensagens não citam o tipo de atendimento, e os dados são tratados conforme a LGPD.']
+];
+$('#duvidas').innerHTML = DUV.map((d, i) => `<div class="duvida"><button aria-expanded="false" aria-controls="dv${i}" id="dvb${i}">${d[0]}</button>
+  <div class="duvida__resp" id="dv${i}" role="region" aria-labelledby="dvb${i}"><div><p>${d[1]}</p></div></div></div>`).join('');
+$('#duvidas').addEventListener('click', e => { const b = e.target.closest('button'); if (b) b.setAttribute('aria-expanded', b.getAttribute('aria-expanded') !== 'true'); });
+
+/* ---------- Folha (modal / bottom sheet) ---------- */
+const folha = $('#folha'), corpo = $('#folha-corpo'), pe = $('#folha-pe'), barra = $('#folha-barra'), voltarBtn = $('#folha-voltar');
+let gatilho = null, aoVoltar = null;
+function renderFolha({ titulo, total = 0, etapa = 0, html, rodape = '', voltar = null, dir = 1 }){
+  $('#folha-titulo').textContent = titulo;
+  barra.innerHTML = total ? Array.from({ length: total }, (_, i) => `<i class="${i <= etapa ? 'on' : ''}"></i>`).join('') : '';
+  barra.style.display = total ? '' : 'none';
+  corpo.innerHTML = html; pe.innerHTML = rodape; pe.style.display = rodape ? '' : 'none';
+  aoVoltar = voltar; voltarBtn.hidden = !voltar;
+  corpo.scrollTop = 0;
+  if (!reduzido) { corpo.classList.remove('troca','troca-volta'); void corpo.offsetWidth; corpo.classList.add(dir > 0 ? 'troca' : 'troca-volta'); }
+}
+function abrirFolha(){
+  if (folha.classList.contains('aberta')) return;
+  gatilho = document.activeElement;
+  folha.classList.add('aberta'); folha.setAttribute('aria-hidden','false'); document.body.classList.add('travado');
+  setTimeout(() => { const f = $('.folha__painel [autofocus]') || $('.folha__painel button:not([hidden]):not([disabled])'); f && f.focus({ preventScroll:true }); }, 60);
+}
+function fecharFolha(){
+  folha.classList.remove('aberta'); folha.setAttribute('aria-hidden','true'); document.body.classList.remove('travado');
+  gatilho && gatilho.focus && gatilho.focus({ preventScroll:true });
+}
+voltarBtn.addEventListener('click', () => aoVoltar && aoVoltar());
+document.addEventListener('keydown', e => {
+  if (!folha.classList.contains('aberta')) return;
+  if (e.key === 'Escape') { e.preventDefault(); fecharFolha(); }
+  if (e.key === 'Tab') {
+    const f = $$('.folha__painel button:not([hidden]):not([disabled]), .folha__painel input').filter(x => x.offsetParent !== null);
+    if (!f.length) return; const a = f[0], z = f[f.length - 1];
+    if (e.shiftKey && document.activeElement === a) { e.preventDefault(); z.focus(); }
+    else if (!e.shiftKey && document.activeElement === z) { e.preventDefault(); a.focus(); }
+  }
+});
+
+/* ---------- Agendamento ---------- */
+const ICO_CHECK = '<svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+let A = {};
+function abrirAgendamento(pre = {}){
+  A = { servico:null, prof:null, dia:null, hora:null, semanal:true, nome:'', tel:'', crianca:'', consent:false, ...pre };
+  let etapa = 0;
+  if (A.servico) etapa = 1;
+  if (A.servico && A.prof) etapa = 2;
+  if (A.prof && !A.servico) { A.servico = prof(A.prof).serv[0]; etapa = 2; }
+  if (A.dia && A.hora != null) etapa = 2;
+  etapaAg(etapa, 1); abrirFolha();
+}
+function etapaAg(n, dir = 1){
+  const T = 'Agendar horário';
+  if (n === 0) {
+    renderFolha({ titulo:T, total:4, etapa:0, dir,
+      html:`<h2>O que você procura?</h2><p class="ajuda-txt">Escolha o tipo de atendimento.</p>
+        <div class="opcoes" role="radiogroup">${Object.entries(SERV).map(([k, s]) =>
+          `<button class="opcao" role="radio" aria-checked="${A.servico === k}" data-v="${k}"><span class="radio"></span><span class="opcao__meio"><b>${s.nome}</b><small>${s.desc}</small></span></button>`).join('')}</div>` });
+    $$('.opcao', corpo).forEach(b => b.addEventListener('click', () => {
+      A.servico = b.dataset.v; if (A.prof && !prof(A.prof).serv.includes(A.servico)) A.prof = null;
+      $$('.opcao', corpo).forEach(x => x.setAttribute('aria-checked', x === b));
+      setTimeout(() => etapaAg(1, 1), reduzido ? 0 : 220);
+    }));
+  }
+  if (n === 1) {
+    const lista = PROFS.filter(p => p.serv.includes(A.servico));
+    renderFolha({ titulo:T, total:4, etapa:1, dir, voltar:() => etapaAg(0, -1),
+      html:`<h2>Com quem você quer falar?</h2><p class="ajuda-txt">${SERV[A.servico].nome} · ${lista.length} profissionais</p>
+        <div class="opcoes" role="radiogroup">${lista.map(p => {
+          const px = proximos(p.id, 1);
+          return `<button class="opcao" role="radio" aria-checked="${A.prof === p.id}" data-v="${p.id}"><span class="avatar ${p.cor}">${p.ini}</span>
+            <span class="opcao__meio"><b>${p.nome}</b><small>${p.abordagem} · ${p.publico}</small>
+            <span class="tags">${p.online ? '<span class="tag">Online</span>' : '<span class="tag">Presencial</span>'}${px ? `<span class="tag">Livre ${rotuloDia(px.d).toLowerCase()}</span>` : ''}</span></span>
+            <span class="radio"></span></button>`; }).join('')}</div>
+        <button class="btn btn--linha" style="width:100%;margin-top:14px" data-quiz-dentro>Não sei com quem marcar</button>` });
+    $$('.opcao', corpo).forEach(b => b.addEventListener('click', () => {
+      if (A.prof !== b.dataset.v) { A.dia = null; A.hora = null; }
+      A.prof = b.dataset.v; $$('.opcao', corpo).forEach(x => x.setAttribute('aria-checked', x === b));
+      setTimeout(() => etapaAg(2, 1), reduzido ? 0 : 220);
+    }));
+    $('[data-quiz-dentro]', corpo).addEventListener('click', () => abrirQuiz(true));
+  }
+  if (n === 2) {
+    const p = prof(A.prof);
+    if (!A.dia) { const px = proximos(p.id, 1); A.dia = px ? chaveDia(px.d) : chaveDia(DIAS[0]); }
+    const desenhar = (d2 = dir) => {
+      const dObj = DIAS.find(d => chaveDia(d) === A.dia) || DIAS[0];
+      const hs = horarios(p.id, dObj);
+      const grupo = (rot, f) => { const g = hs.filter(f); return g.length ? `<p class="periodo">${rot}</p><div class="horas">${g.map(x =>
+        `<button class="hora" ${x.livre ? '' : 'disabled'} aria-pressed="${A.hora === x.h}" data-h="${x.h}" aria-label="${hh(x.h)}${x.livre ? '' : ', ocupado'}">${hh(x.h)}</button>`).join('')}</div>` : ''; };
+      const semanal = SERV[A.servico].semanal;
+      renderFolha({ titulo:T, total:4, etapa:2, dir:d2, voltar:() => etapaAg(1, -1),
+        html:`<h2>Quando fica melhor?</h2><p class="ajuda-txt">${p.nome} · ${SERV[A.servico].dur}</p>
+          <div class="dias" role="group" aria-label="Dias disponíveis">${DIAS.map(d => `<button class="dia" aria-pressed="${chaveDia(d) === A.dia}" data-d="${chaveDia(d)}">${SEM[d.getDay()]}<b>${d.getDate()}</b></button>`).join('')}</div>
+          ${grupo('Manhã', x => x.h < 12)}${grupo('Tarde', x => x.h >= 12 && x.h < 18)}${grupo('Noite', x => x.h >= 18)}
+          ${semanal ? `<button class="repetir" role="switch" aria-checked="${A.semanal}"><span><b>Manter este horário toda semana</b><small>${A.hora != null ? `Toda ${SEM_LONGO[dObj.getDay()]} às ${hh(A.hora)}` : 'Seu horário fica reservado para as próximas sessões'}</small></span><span class="chave"></span></button>` : ''}`,
+        rodape:`<button class="btn btn--cheio" id="ag-seguir" ${A.hora == null ? 'disabled' : ''}>Continuar</button>` });
+      const sel = $('.dia[aria-pressed="true"]', corpo), faixa = $('.dias', corpo); if (sel && faixa) faixa.scrollLeft = Math.max(0, sel.offsetLeft - faixa.offsetLeft - 24);
+      $$('.dia', corpo).forEach(b => b.addEventListener('click', () => { A.dia = b.dataset.d; A.hora = null; desenhar(0); corpo.classList.remove('troca','troca-volta'); }));
+      $$('.hora:not([disabled])', corpo).forEach(b => b.addEventListener('click', () => {
+        A.hora = +b.dataset.h; $$('.hora', corpo).forEach(x => x.setAttribute('aria-pressed', x === b));
+        $('#ag-seguir').disabled = false;
+        const s = $('.repetir small', corpo); if (s) s.textContent = `Toda ${SEM_LONGO[dObj.getDay()]} às ${hh(A.hora)}`;
+      }));
+      const rep = $('.repetir', corpo); rep && rep.addEventListener('click', () => { A.semanal = !A.semanal; rep.setAttribute('aria-checked', A.semanal); });
+      $('#ag-seguir').addEventListener('click', () => etapaAg(3, 1));
+    };
+    desenhar(dir);
+  }
+  if (n === 3) {
+    const p = prof(A.prof), dObj = DIAS.find(d => chaveDia(d) === A.dia);
+    const inf = A.servico === 'infantil';
+    const semanal = SERV[A.servico].semanal && A.semanal;
+    renderFolha({ titulo:T, total:4, etapa:3, dir, voltar:() => etapaAg(2, -1),
+      html:`<h2>Seus dados</h2><p class="ajuda-txt">Só o necessário para confirmar pelo WhatsApp.</p>
+        <div class="campo" id="c-nome"><label for="i-nome">${inf ? 'Nome do responsável' : 'Seu nome'}</label><input id="i-nome" autocomplete="name" value="${A.nome}" placeholder="Como podemos te chamar"><span class="campo__msg" role="alert"></span></div>
+        ${inf ? `<div class="campo" id="c-cri"><label for="i-cri">Nome da criança ou adolescente</label><input id="i-cri" value="${A.crianca}"><span class="campo__msg" role="alert"></span></div>` : ''}
+        <div class="campo" id="c-tel"><label for="i-tel">WhatsApp</label><input id="i-tel" type="tel" inputmode="numeric" autocomplete="tel-national" value="${A.tel}" placeholder="(00) 00000-0000"><span class="campo__msg" role="alert"></span></div>
+        <div class="resumo">
+          <div><span>Atendimento</span><strong>${SERV[A.servico].curto}</strong></div>
+          <div><span>Profissional</span><strong>${p.nome}</strong></div>
+          <div><span>${semanal ? 'Primeira sessão' : 'Quando'}</span><strong>${fmtCurto(dObj)}, ${hh(A.hora)}</strong></div>
+          ${semanal ? `<div><span>Depois</span><strong>Toda ${SEM_LONGO[dObj.getDay()]}, ${hh(A.hora)}</strong></div>` : ''}
+        </div>
+        <button class="consent" role="checkbox" aria-checked="${A.consent}"><span class="caixa"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span>Autorizo o uso dos meus dados apenas para este agendamento e para os lembretes, conforme a LGPD.</span></button>`,
+      rodape:`<button class="btn btn--cheio" id="ag-confirmar">Confirmar agendamento</button>` });
+    const tel = $('#i-tel'), nome = $('#i-nome'), cri = $('#i-cri');
+    const mascara = v => { const d = v.replace(/\D/g,'').slice(0,11); if (d.length < 3) return d; if (d.length < 8) return `(${d.slice(0,2)}) ${d.slice(2)}`; return `(${d.slice(0,2)}) ${d.slice(2,7)}-${d.slice(7)}`; };
+    const valNome = () => nome.value.trim().length >= 3;
+    const valTel = () => tel.value.replace(/\D/g,'').length === 11;
+    const valCri = () => !cri || cri.value.trim().length >= 2;
+    const marca = (id, ok, msg) => { const c = $(id); c.classList.toggle('erro', !ok); $('.campo__msg', c).textContent = ok ? '' : msg; };
+    const btn = $('#ag-confirmar');
+    const atual = () => { A.nome = nome.value; A.tel = tel.value; if (cri) A.crianca = cri.value; btn.disabled = !(valNome() && valTel() && valCri() && A.consent); };
+    tel.addEventListener('input', () => { tel.value = mascara(tel.value); if ($('#c-tel').classList.contains('erro') && valTel()) marca('#c-tel', true); atual(); });
+    nome.addEventListener('input', () => { if ($('#c-nome').classList.contains('erro') && valNome()) marca('#c-nome', true); atual(); });
+    cri && cri.addEventListener('input', () => { if ($('#c-cri').classList.contains('erro') && valCri()) marca('#c-cri', true); atual(); });
+    nome.addEventListener('blur', () => nome.value && marca('#c-nome', valNome(), 'Escreva pelo menos 3 letras.'));
+    tel.addEventListener('blur', () => tel.value && marca('#c-tel', valTel(), 'Confira o número: são 11 dígitos com o DDD.'));
+    cri && cri.addEventListener('blur', () => cri.value && marca('#c-cri', valCri(), 'Escreva o nome.'));
+    const cons = $('.consent', corpo); cons.addEventListener('click', () => { A.consent = !A.consent; cons.setAttribute('aria-checked', A.consent); atual(); });
+    atual();
+    btn.addEventListener('click', () => {
+      btn.disabled = true; btn.innerHTML = '<span class="carregando" aria-hidden="true"></span>Confirmando';
+      setTimeout(() => etapaAg(4, 1), reduzido ? 200 : 900);
+    });
+  }
+  if (n === 4) {
+    const p = prof(A.prof), dObj = DIAS.find(d => chaveDia(d) === A.dia);
+    const semanal = SERV[A.servico].semanal && A.semanal;
+    const primeiro = (A.nome.trim().split(' ')[0] || 'Olá');
+    renderFolha({ titulo:'Agendamento', dir,
+      html:`<div class="ok-grande">${ICO_CHECK}</div><h2>Horário reservado</h2>
+        <p class="ajuda-txt">Enviamos a confirmação para ${A.tel}. Um dia antes chega um lembrete.</p>
+        <div class="resumo">
+          <div><span>Profissional</span><strong>${p.nome}</strong></div>
+          <div><span>${semanal ? 'Primeira sessão' : 'Quando'}</span><strong>${fmtLongo(dObj)}, ${hh(A.hora)}</strong></div>
+          ${semanal ? `<div><span>Horário fixo</span><strong>Toda ${SEM_LONGO[dObj.getDay()]}, ${hh(A.hora)}</strong></div>` : ''}
+          <div><span>Formato</span><strong>${p.online ? 'Presencial ou online' : 'Presencial'}</strong></div>
+        </div>
+        <div class="zap"><small>WhatsApp · Clínica Elo</small>Olá, ${primeiro}! Seu horário na Clínica Elo está confirmado para ${SEM_LONGO[dObj.getDay()]}, ${String(dObj.getDate()).padStart(2,'0')}/${String(dObj.getMonth()+1).padStart(2,'0')}, às ${hh(A.hora)}. Responda 1 para confirmar ou 2 para remarcar.</div>
+        <p class="ajuda-txt" style="margin-top:10px;font-size:.84rem">A mensagem não cita o tipo de atendimento.</p>`,
+      rodape:`<button class="btn btn--cheio" data-fechar>Pronto</button>` });
+    anunciar('Horário reservado com ' + p.nome);
+  }
+}
+
+/* ---------- Quiz ---------- */
+let Q = {};
+function abrirQuiz(dentro = false){
+  Q = { quem:null, busca:null, modo:null };
+  quizEtapa(0, 1); if (!dentro) abrirFolha(); else abrirFolha();
+}
+function quizEtapa(n, dir = 1){
+  const T = 'Encontrar profissional';
+  const perguntas = [
+    { k:'quem', t:'Para quem é o atendimento?', o:[['mim','Para mim','Sou adulto e quero cuidar de mim'],['filho','Para meu filho ou filha','Criança ou adolescente'],['casal','Para o casal','Nós dois juntos']] },
+    { k:'busca', t:'O que você procura?', o:[['conversar','Conversar sobre o que sinto','Ansiedade, tristeza, luto, relações, comportamento'],['investigar','Investigar atenção, memória ou aprendizagem','Suspeita de TDAH, TEA ou dificuldades na escola ou no trabalho']] },
+    { k:'modo', t:'Como prefere ser atendido?', o:[['presencial','Presencial','Na clínica'],['online','Online','Por videochamada'],['tanto','Tanto faz','Mostrar todas as opções']] }
+  ];
+  const ordem = Q.quem === 'casal' ? [0, 2] : [0, 1, 2];
+  if (n >= ordem.length) return quizResultado(dir);
+  const pq = perguntas[ordem[n]];
+  renderFolha({ titulo:T, total:ordem.length, etapa:n, dir, voltar: n > 0 ? () => quizEtapa(n - 1, -1) : null,
+    html:`<h2>${pq.t}</h2><p class="ajuda-txt">Pergunta ${n + 1} de ${ordem.length}</p>
+      <div class="opcoes" role="radiogroup">${pq.o.map(o => `<button class="opcao" role="radio" aria-checked="${Q[pq.k] === o[0]}" data-v="${o[0]}"><span class="radio"></span><span class="opcao__meio"><b>${o[1]}</b><small>${o[2]}</small></span></button>`).join('')}</div>` });
+  $$('.opcao', corpo).forEach(b => b.addEventListener('click', () => {
+    Q[pq.k] = b.dataset.v; $$('.opcao', corpo).forEach(x => x.setAttribute('aria-checked', x === b));
+    setTimeout(() => quizEtapa(n + 1, 1), reduzido ? 0 : 220);
+  }));
+}
+function quizResultado(dir){
+  let serv = 'terapia', filtro = p => true;
+  if (Q.quem === 'casal') serv = 'casal';
+  else if (Q.quem === 'filho') { serv = Q.busca === 'investigar' ? 'avaliacao' : 'infantil'; if (serv === 'avaliacao') filtro = p => p.serv.includes('infantil'); }
+  else serv = Q.busca === 'investigar' ? 'avaliacao' : 'terapia';
+  let lista = PROFS.filter(p => p.serv.includes(serv) && filtro(p));
+  let aviso = '';
+  if (Q.modo === 'online') { const on = lista.filter(p => p.online); if (on.length) lista = on; else aviso = 'Este atendimento é só presencial, porque usa testes aplicados na clínica.'; }
+  const totalQ = Q.quem === 'casal' ? 2 : 3;
+  renderFolha({ titulo:'Encontrar profissional', total:totalQ, etapa:totalQ - 1, dir, voltar:() => quizEtapa(totalQ - 1, -1),
+    html:`<h2>${lista.length > 1 ? 'Estes profissionais combinam com você' : 'Esta profissional combina com você'}</h2>
+      <p class="ajuda-txt">${SERV[serv].nome}${aviso ? '. ' + aviso : ''}</p>
+      <div class="opcoes">${lista.map(p => { const px = proximos(p.id, 1); return `<div class="opcao" style="cursor:default"><span class="avatar ${p.cor}">${p.ini}</span>
+        <span class="opcao__meio"><b>${p.nome}</b><small>${p.abordagem} · ${p.publico}</small>
+        ${px ? `<span class="match">Livre ${rotuloDia(px.d).toLowerCase()}, ${hh(px.horas[0])}</span>` : ''}
+        <span style="display:block;margin-top:12px"><button class="btn btn--cheio" style="min-height:40px;padding:9px 18px;font-size:.9rem" data-com="${p.id}">Agendar com ${p.nome.split(' ')[0]}</button></span></span></div>`; }).join('')}</div>` });
+  $$('[data-com]', corpo).forEach(b => b.addEventListener('click', () => { A = {}; abrirAgendamento({ servico:serv, prof:b.dataset.com }); }));
+}
+
+/* ---------- Perfil ---------- */
+function abrirPerfil(id){
+  const p = prof(id), px = proximos(id, 4);
+  renderFolha({ titulo:'Perfil',
+    html:`<div class="perfil__topo"><span class="avatar ${p.cor}">${p.ini}</span><div><h2 style="margin:0">${p.nome}</h2><span class="ajuda-txt" style="margin:0">${p.titulo} · CRP 00/00000</span></div></div>
+      <p style="color:var(--muted)">${p.bio}</p>
+      <div class="perfil__bloco"><h3>Abordagem</h3><p>${p.abordagem}</p></div>
+      <div class="perfil__bloco"><h3>Atende</h3><div class="tags" style="padding:0">${p.serv.map(s => `<span class="tag">${SERV[s].curto}</span>`).join('')}<span class="tag">${p.publico}</span><span class="tag">${p.online ? 'Presencial e online' : 'Presencial'}</span></div></div>
+      ${px ? `<div class="perfil__bloco"><h3>Próximos horários · ${rotuloDia(px.d)}</h3><div class="slots" style="grid-column:auto">${px.horas.map(h => `<button class="slot" data-pslot="${h}">${hh(h)}</button>`).join('')}</div></div>` : ''}`,
+    rodape:`<button class="btn btn--cheio" id="perfil-ag">Agendar com ${p.nome.split(' ')[0]}</button>` });
+  $('#perfil-ag').addEventListener('click', () => abrirAgendamento({ prof:id, servico:p.serv[0] }));
+  $$('[data-pslot]', corpo).forEach(b => b.addEventListener('click', () => abrirAgendamento({ prof:id, servico:p.serv[0], dia:chaveDia(px.d), hora:+b.dataset.pslot })));
+  abrirFolha();
+}
+
+/* ---------- Cliques globais ---------- */
+document.addEventListener('click', e => {
+  const t = e.target;
+  const ir = t.closest('[data-ir]'); if (ir) { irPara(ir.dataset.ir); return; }
+  const fe = t.closest('[data-fechar]'); if (fe) { fecharFolha(); return; }
+  const ag = t.closest('[data-agendar]'); if (ag) { abrirAgendamento(ag.dataset.servico ? { servico:ag.dataset.servico } : {}); return; }
+  const qz = t.closest('[data-quiz]'); if (qz) { abrirQuiz(); return; }
+  const sl = t.closest('[data-slot]'); if (sl) { const [pid, dia, h] = sl.dataset.slot.split('|'); abrirAgendamento({ prof:pid, servico:prof(pid).serv[0], dia, hora:+h }); return; }
+  const pf = t.closest('[data-perfil]'); if (pf) { abrirPerfil(pf.dataset.perfil); return; }
+});
+
+/* ---------- Como marcar: celular animado ---------- */
+(function(){
+  const TEMPO = 5000, cm = $('#cm'), passos = $$('.passo', cm), telas = $$('.t', cm), barras = $$('#mprog i'), contador = $('#contador');
+  let atual = 0, timer = null, pausado = false, visivel = false;
+  cm.style.setProperty('--tempo', TEMPO + 'ms');
+  function ir(i){
+    const velha = telas[atual]; velha.classList.remove('on'); velha.classList.add('saiu'); setTimeout(() => velha.classList.remove('saiu'), 450);
+    passos.forEach((p, k) => { p.classList.toggle('ativo', k === i); const b = p.querySelector('button'); k === i ? b.setAttribute('aria-current','step') : b.removeAttribute('aria-current');
+      const br = p.querySelector('.passo__barra'); br.style.animation = 'none'; void br.offsetWidth; br.style.animation = ''; });
+    telas[i].classList.add('on'); barras.forEach((b, k) => b.classList.toggle('on', k <= i));
+    contador.textContent = `Passo ${i + 1} de 4`; atual = i; agendar();
+  }
+  function agendar(){ clearTimeout(timer); if (reduzido || pausado || !visivel || document.hidden) return; timer = setTimeout(() => ir((atual + 1) % passos.length), TEMPO); }
+  passos.forEach((p, i) => p.querySelector('button').addEventListener('click', () => { pausado = true; cm.classList.add('pausado'); clearTimeout(timer); ir(i); }));
+  new IntersectionObserver(([e]) => { visivel = e.isIntersecting; agendar(); }, { threshold:.3 }).observe(cm);
+  document.addEventListener('visibilitychange', agendar);
+})();
+
+/* ---------- Início ---------- */
+irPara((location.hash || '').slice(1) || 'inicio', true);
+requestAnimationFrame(() => moverPilula(false));
+document.fonts && document.fonts.ready.then(() => moverPilula(false));
+})();
+</script>
+</body>
+</html>
